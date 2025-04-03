@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xanderforge Intro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background: #000;
+      font-family: 'Share Tech Mono', monospace;
+      overflow: hidden;
+    }
+
+    .intro-container {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      animation: fadeOut 2s ease 4s forwards;
+    }
+
+    .glitch-logo {
+      font-size: 2.5rem;
+      color: #0f0;
+      position: relative;
+      text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 20px #0f0;
+      animation: glitch 0.8s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
+    }
+
+    .scanline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(0, 255, 0, 0.4);
+      box-shadow: 0 0 10px #0f0;
+      animation: scan 4s ease-in-out infinite;
+    }
+
+    @keyframes scan {
+      0% { top: 0%; }
+      50% { top: 100%; }
+      100% { top: 0%; }
+    }
+
+    .tagline {
+      color: #ffffffcc;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    .intro-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      animation: hideOverlay 1s ease 4s forwards;
+      z-index: 999;
+    }
+
+    @keyframes hideOverlay {
+      to { opacity: 0; visibility: hidden; }
+    }
+  </style>
+</head>
+<body>
+  <div class="intro-container">
+    <div class="scanline"></div>
+    <div class="glitch-logo">XANDERFORGE'S</div>
+    <div class="tagline">Elite Gaming Interface Initialization...</div>
+  </div>
+  <div class="intro-overlay"></div>
+
+  <audio id="jetSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_0210f218a5.mp3" autoplay></audio>
+
+  <script>
+    const sound = document.getElementById("jetSound");
+    sound.volume = 0.5;
+    sound.play();
+
+    setTimeout(() => {
+      window.location.href = 'main.html';
+    }, 5000);
+  </script>
+</body>
+</html>
