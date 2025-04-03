@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xanderforge's - Elite Gaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: 'Share Tech Mono', monospace;
+      background: #111;
+      color: #ffffffcc;
+      scroll-behavior: smooth;
+      height: 100vh;
+      overflow: hidden;
+      font-size: 13px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 16px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: #1c1c1c;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #ff3c3c;
+      background: #3c1a1a;
+      padding: 2px 8px;
+      border: 1px solid #ff3c3c80;
+      border-radius: 6px;
+    }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 22px;
+      height: 16px;
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 5px;
+      border: 1px solid #5bc0eb;
+      background: #102a43;
+    }
+
+    .menu-toggle span {
+      height: 2px;
+      border-radius: 1px;
+      background: #5bc0eb;
+    }
+
+    nav {
+      position: absolute;
+      top: 45px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      background: #1e1e2f;
+      backdrop-filter: blur(8px);
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 6px;
+      box-shadow: 0 4px 10px rgba(91, 192, 235, 0.1);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: all 0.3s ease;
+    }
+
+    nav.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    nav a {
+      color: #0f0;
+      text-decoration: none;
+      padding: 4px 8px;
+      margin: 2px 0;
+      border-radius: 4px;
+      border: 1px solid #0f08;
+      background: #061a06;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    nav a:hover {
+      background: #0f0;
+      color: #000;
+    }
+
+    main {
+      padding-top: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 70px);
+      position: relative;
+    }
+
+    .page {
+      position: absolute;
+      width: 100%;
+      max-width: 640px;
+      height: 100%;
+      padding: 20px 16px;
+      backdrop-filter: blur(0px);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.96);
+      transition: opacity 0.5s ease, transform 0.5s ease, backdrop-filter 0.5s ease;
+      border-radius: 10px;
+      background: #141414;
+      border: 1px solid #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .page.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+      backdrop-filter: blur(12px);
+    }
+
+    .typewriter {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .typewriter h2,
+    .typewriter p {
+      display: inline-block;
+      border: 1px solid #4f4f4f;
+      background: #3c3c3c;
+      padding: 8px 14px;
+      border-radius: 5px;
+      color: inherit;
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+
+    .typing {
+      border-right: 1px solid #0f0;
+      animation: blink .75s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 8px;
+      background: #1c1c1c;
+      backdrop-filter: blur(6px);
+      font-size: 0.65rem;
+      border-top: 1px solid #222;
+    }
+
+    footer p {
+      display: inline-block;
+      padding: 3px 8px;
+      background: #222;
+      border-radius: 4px;
+      border: 1px solid #444;
+    }
+
+    .download-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 6px;
+      border: 1px solid #8884;
+      background: #000;
+      color: #ffffff88;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      background: #0f0;
+      color: #000;
+    }
+
+    .circle-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .circle-buttons a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #000;
+      border: 1px solid #ffffff50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .circle-buttons a:hover {
+      background: #0f0;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Xanderforge's</div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav id="menu">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('downloads')">Downloads</a>
+      <a href="#" onclick="showPage('social')">Social</a>
+      <a href="#" onclick="showPage('about')">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page active" id="home">
+      <div class="typewriter">
+        <h2 class="text" data-text="Welcome to Xanderforge's"></h2>
+        <p class="text" data-text="The ultimate gaming experience awaits. Explore elite-level performance and stunning visuals."></p>
+      </div>
+    </div>
+
+    <div class="page" id="downloads">
+      <div class="typewriter">
+        <h2 class="text" data-text="Downloads"></h2>
+        <p class="text" data-text="Access tools, patches, and special builds designed to supercharge your gameplay."></p>
+      </div>
+      <a href="https://example.com/file1" class="download-btn">Download 1</a>
+      <a href="https://example.com/file2" class="download-btn">Download 2</a>
+    </div>
+
+    <div class="page" id="social">
+      <div class="typewriter">
+        <h2 class="text" data-text="Social"></h2>
+        <p class="text" data-text="Follow Xanderforge's community across all platforms. Connect with gamers worldwide."></p>
+      </div>
+      <div class="circle-buttons">
+        <a href="https://youtube.com" title="YouTube">YT</a>
+        <a href="https://facebook.com" title="Facebook">FB</a>
+        <a href="https://instagram.com" title="Instagram">IG</a>
+        <a href="https://discord.com" title="Discord">DS</a>
+      </div>
+    </div>
+
+    <div class="page" id="about">
+      <div class="typewriter">
+        <h2 class="text" data-text="About"></h2>
+        <p class="text" data-text="I'm a YouTuber who reviews PvP texture packs for Minecraft. On my channel, I showcase the best packs, explain their advantages in combat, and help players find the perfect look and feel for their gameplay. All reviewed packs are uploaded here with direct download links, so my viewers can easily access and enjoy them. Welcome to the hub of high-performance visuals and PvP action!"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Xanderforge's. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const menu = document.getElementById('menu');
+    const pages = document.querySelectorAll('.page');
+    let menuActive = false;
+
+    function toggleMenu() {
+      menuActive = !menuActive;
+      menu.classList.toggle('active', menuActive);
+    }
+
+    function showPage(id) {
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+      const current = document.getElementById(id);
+      current.classList.add('active');
+      typeText(current);
+      menu.classList.remove('active');
+      menuActive = false;
+    }
+
+    function typeText(page) {
+      const elements = page.querySelectorAll('.text');
+      elements.forEach(el => {
+        const text = el.getAttribute('data-text');
+        el.textContent = '';
+        let i = 0;
+        el.classList.add('typing');
+        const interval = setInterval(() => {
+          el.textContent += text[i];
+          i++;
+          if (i >= text.length) {
+            clearInterval(interval);
+            el.classList.remove('typing');
+          }
+        }, 30);
+      });
+    }
+
+    typeText(document.querySelector('.page.active'));
+  </script>
+</body>
+</html>
