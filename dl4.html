@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe to Unlock</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #bbb;
+      max-width: 320px;
+      margin-bottom: 20px;
+    }
+
+    .file-name {
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    .btn {
+      background: none;
+      border: 1px solid #888;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    #unlocked {
+      display: none;
+      margin-top: 25px;
+    }
+
+    a.download-link {
+      font-size: 14px;
+      text-decoration: none;
+      color: #fff;
+      border: 1px solid #888;
+      padding: 10px 20px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: 0.2s;
+    }
+
+    a.download-link:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #ff6347;
+      margin-bottom: 20px;
+    }
+
+    /* Media Query for smaller screens */
+    @media screen and (max-width: 480px) {
+      h2 {
+        font-size: 18px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+
+      .btn {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+
+      .file-name {
+        font-size: 12px;
+      }
+
+      .note {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Subscribe to Unlock</h2>
+
+  <!-- New note text -->
+  <p class="note">NOTE: CONTENT WON'T BE VISIBLE IF YOU DIDN'T DO THE TASK. IF YOU DO SO, WAIT FOR 30 SEC.</p>
+
+  <p>Open the channel, subscribe, turn on notifications, then come back.</p>
+
+  <div class="file-name">File: <strong>example_file_v1.0.zip</strong></div>
+
+  <button class="btn" onclick="redirectToSubscribe()">Open Channel</button>
+
+  <div id="unlocked">
+    <p>Content unlocked:</p>
+    <a href="https://devuploads.com/s6ykw9odid60" class="download-link" onclick="openDownloadLink(event)">Download File</a>
+  </div>
+
+  <!-- Hidden countdown timer -->
+  <div id="countdown" style="display: none;"></div>
+
+  <script>
+    let countdown = 30; // 30-second countdown
+    let countdownInterval;
+
+    function redirectToSubscribe() {
+      // Open YouTube channel for @Xanderxforge in a new tab
+      window.open("https://www.youtube.com/@Xanderxforge", "_blank");
+      
+      // Start the 30-second countdown
+      startCountdown();
+
+      // Hide the unlock content initially
+      document.getElementById("unlocked").style.display = "none";
+    }
+
+    function startCountdown() {
+      countdownInterval = setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(countdownInterval);
+          // Unlock the content after the countdown finishes
+          document.getElementById("unlocked").style.display = "block";
+        }
+      }, 1000);
+    }
+
+    function openDownloadLink(event) {
+      // Prevent the default action of opening the link in the same window
+      event.preventDefault();
+      // Open the download link in a new tab
+      window.open(event.target.href, "_blank");
+    }
+  </script>
+
+</body>
+  </html>
